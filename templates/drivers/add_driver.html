@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}
+Add Driver
+{% endblock %}
+
+{% block content %}
+
+<div class="card shadow-lg border-0">
+
+<div class="card-header bg-success text-white">
+    <h3 class="mb-0">
+        🚗 Add New Driver
+    </h3>
+</div>
+
+<div class="card-body">
+
+    <form method="post">
+
+        {% csrf_token %}
+
+        <div class="row">
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Full Name</label>
+                {{ form.full_name }}
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Username</label>
+                {{ form.username }}
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Password</label>
+                {{ form.password }}
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Confirm Password</label>
+                {{ form.confirm_password }}
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Phone Number</label>
+                {{ form.phone }}
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Employee ID</label>
+                {{ form.employee_id }}
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Vehicle Number</label>
+                {{ form.vehicle_number }}
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">License Number</label>
+                {{ form.license_number }}
+            </div>
+
+        </div>
+
+        <hr>
+
+        <button
+            type="submit"
+            class="btn btn-success px-4"
+        >
+            Create Driver
+        </button>
+
+    </form>
+
+</div>
+</div>
+
+{% endblock %}

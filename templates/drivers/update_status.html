@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+
+{% block title %}
+Update Status
+{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-md-8">
+
+        <div class="card shadow">
+
+            <div class="card-header bg-primary text-white">
+
+                <h4 class="mb-0">
+                    🚗 Update Driver Status
+                </h4>
+
+            </div>
+
+            <div class="card-body">
+
+                <p class="mb-4">
+
+                    Driver:
+
+                    <strong>
+                        {{ driver_status.driver }}
+                    </strong>
+
+                </p>
+
+                <form method="post">
+
+                    {% csrf_token %}
+
+                    {{ form.non_field_errors }}
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Status
+                        </label>
+
+                        {{ form.status }}
+
+                    </div>
+
+                    <div id="dutyFields">
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Destination
+                            </label>
+
+                            {{ form.destination }}
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Purpose
+                            </label>
+
+                            {{ form.purpose }}
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Expected Return
+                            </label>
+
+                            {{ form.expected_return }}
+
+                        </div>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Remarks
+                        </label>
+
+                        {{ form.remarks }}
+
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="btn btn-success"
+                    >
+                        Save Changes
+                    </button>
+
+                    <a
+                        href="/dashboard/"
+                        class="btn btn-secondary"
+                    >
+                        Cancel
+                    </a>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function toggleDutyFields() {
+
+    const status =
+        document.getElementById(
+            "id_status"
+        ).value;
+
+    const dutyFields =
+        document.getElementById(
+            "dutyFields"
+        );
+
+    if (status === "ON_DUTY") {
+
+        dutyFields.style.display =
+            "block";
+
+    } else {
+
+        dutyFields.style.display =
+            "none";
+    }
+}
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        toggleDutyFields();
+
+        document.getElementById(
+            "id_status"
+        ).addEventListener(
+            "change",
+            toggleDutyFields
+        );
+    }
+);
+
+</script>
+
+{% endblock %}

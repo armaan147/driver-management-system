@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}
+Driver Dashboard
+{% endblock %}
+
+{% block content %}
+
+<h2>Driver Dashboard</h2>
+
+<div class="card mt-4">
+
+    <div class="card-body">
+
+        <h4>
+            {{ driver_status.driver }}
+        </h4>
+
+        <hr>
+
+        <p>
+            <strong>Status:</strong>
+            {{ driver_status.get_status_display }}
+        </p>
+
+        <p>
+            <strong>Destination:</strong>
+            {{ driver_status.destination|default:"-" }}
+        </p>
+
+        <p>
+            <strong>Purpose:</strong>
+            {{ driver_status.purpose|default:"-" }}
+        </p>
+
+        <p>
+            <strong>Remarks:</strong>
+            {{ driver_status.remarks|default:"-" }}
+        </p>
+
+        <a
+            href="{% url 'update_status' driver_status.id %}"
+            class="btn btn-primary"
+        >
+            Update Status
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

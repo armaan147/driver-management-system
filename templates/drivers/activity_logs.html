@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}
+Activity Logs
+{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">
+    📋 Activity Logs
+</h2>
+
+<div class="card shadow">
+
+    <div class="card-body">
+
+        <table class="table table-hover">
+
+            <thead class="table-dark">
+
+                <tr>
+
+                    <th>Driver</th>
+
+                    <th>Old Status</th>
+
+                    <th>New Status</th>
+
+                    <th>Changed By</th>
+
+                    <th>Destination</th>
+
+                    <th>Purpose</th>
+
+                    <th>Time</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for log in logs %}
+
+                <tr>
+
+                    <td>
+                        {{ log.driver }}
+                    </td>
+
+                    <td>
+                        {{ log.old_status }}
+                    </td>
+
+                    <td>
+                        {{ log.new_status }}
+                    </td>
+
+                    <td>
+                        {{ log.changed_by|default:"System" }}
+                    </td>
+
+                    <td>
+                        {{ log.destination }}
+                    </td>
+
+                    <td>
+                        {{ log.purpose }}
+                    </td>
+
+                    <td>
+                        {{ log.timestamp }}
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

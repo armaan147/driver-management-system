@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}
+Manage Drivers
+{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <h2>
+        👥 Manage Drivers
+    </h2>
+
+    <a
+        href="{% url 'add_driver' %}"
+        class="btn btn-success"
+    >
+        ➕ Add Driver
+    </a>
+
+</div>
+
+<div class="card shadow">
+
+    <div class="card-body">
+
+        <table class="table table-hover">
+
+            <thead class="table-dark">
+
+                <tr>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>Phone</th>
+                    <th>Employee ID</th>
+                    <th>Vehicle</th>
+                    <th>License</th>
+                    <th>Action</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for driver in drivers %}
+
+                <tr>
+
+                    <td>
+                        {{ driver.user.get_full_name }}
+                    </td>
+
+                    <td>
+                        {{ driver.user.username }}
+                    </td>
+
+                    <td>
+                        {{ driver.user.phone }}
+                    </td>
+
+                    <td>
+                        {{ driver.employee_id }}
+                    </td>
+
+                    <td>
+                        {{ driver.vehicle_number }}
+                    </td>
+
+                    <td>
+                        {{ driver.license_number }}
+                    </td>
+
+                    <td>
+
+                        <a
+                            href="{% url 'edit_driver' driver.id %}"
+                            class="btn btn-primary btn-sm" >
+                            Edit
+                        </a>
+                        <a
+                   href="{% url 'reset_password' driver.id %}"
+                    class="btn btn-warning btn-sm">
+                               Reset Password
+                            </a>
+
+                        <a  
+                            href="{% url 'delete_driver' driver.id %}"
+                            class="btn btn-danger btn-sm"
+                        >
+                            Delete
+                        </a>
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}
