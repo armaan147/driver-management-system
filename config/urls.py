@@ -19,14 +19,18 @@ from django.urls import path, include
 from accounts.views import home
 from accounts.views import home, user_login
 from accounts.views import home, user_logout
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
 
     path("", home, name="home"),
+
     path(
-    "logout/",
-    user_logout,
-    name="logout"
-),
+        "logout/",
+        user_logout,
+        name="logout"
+    ),
 
     path(
         "login/",
@@ -46,3 +50,9 @@ urlpatterns = [
         include("drivers.urls")
     ),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(
+        settings.STATIC_URL,
+        document_root=settings.STATIC_ROOT
+    )
